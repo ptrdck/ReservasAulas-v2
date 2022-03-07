@@ -59,7 +59,7 @@ public class Reserva {
 		// Comprobación de clase a través de operador instanceof
 		if (permanencia instanceof PermanenciaPorHora) {
 			this.permanencia= new PermanenciaPorHora((PermanenciaPorHora) permanencia);
-		} else if (permanencia instanceof PermanenciaPortTramo) {
+		} else if (permanencia instanceof PermanenciaPorTramo) {
 			this.permanencia= new PermanenciaPorTramo((PermanenciaPorTramo) permanencia);
 		}
 		this.permanencia= permanencia;
