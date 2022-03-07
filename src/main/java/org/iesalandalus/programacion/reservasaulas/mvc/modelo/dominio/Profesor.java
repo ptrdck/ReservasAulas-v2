@@ -86,6 +86,11 @@ public class Profesor {
 	public String getTelefono() {
 		return telefono;
 	}
+	
+	//Método que reotrna un profesor ficticio con un correo en parámetros 
+	public static Profesor getProfesorFicticio(String correo) {
+		return new Profesor("Pedro Patricio Cárdenas Figueroa", correo);
+	}
 
 	@Override
 	public int hashCode() {
