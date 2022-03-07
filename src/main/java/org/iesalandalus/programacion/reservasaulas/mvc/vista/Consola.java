@@ -1,11 +1,16 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.PermanenciaPorHora;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.PermanenciaPorTramo;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
@@ -43,7 +48,22 @@ public class Consola {
 	public static Aula leerAula() {
 		System.out.println("Introduzca el nombre del aula: ");
 		String nombre= Entrada.cadena();
-		return new Aula(nombre);
+		System.out.print("Introduce el número de puestos del aula");
+		int puestos= Entrada.entero();
+		return new Aula(nombre, puestos);
+	}
+	
+	public static int leerNumerosDePuestos() {
+		System.out.print("Introduce la cantidad de puestos del aula: ");
+		
+		int puestos= Entrada.entero();
+		return puestos;
+	}
+	
+	public static Aula leerAulaFicticia() {
+		System.out.print("Introduce el nombre del aula: ");
+		String nombre= Entrada.cadena();
+		return Aula.getAulaFicticia(nombre);
 	}
 	
 	public static String leerNombreAula() {
@@ -51,6 +71,7 @@ public class Consola {
 		String nombreAula= Entrada.cadena();
 		return nombreAula;
 	}
+	
 	
 	public static Profesor leerProfesor() {
 		System.out.println("Introduzca el nombre del profesor: ");
@@ -71,7 +92,10 @@ public class Consola {
 		return nombreProfesor;
 	}
 	
-	
+	public static Profesor leerProfesorFicticio() {
+		System.out.print("Introduce el correo del profesor: ");
+		return Profesor.getProfesorFicticio(Entrada.cadena());
+	}
 	
 	public static Tramo leerTramo() {
 		System.out.println("Introduzca el tramo en que desea reservar (0. MaÃ±ana, 1. Tarde): ");
@@ -97,5 +121,51 @@ public class Consola {
 		return dia;
 	}
 	
-
+	public static Permanencia leerPermanencia() {
+		int ordinalPermanencia= Consola.elegirPermanencia();
+		LocalDate dia= leerDia();
+		Permanencia permanencia= null;
+		if (ordinalPermanencia== 0){
+			Tramo tramo= leerTramo();
+			permanencia= new PermanenciaPorTramo(dia, tramo);
+		}
+		else if (ordinalPermanencia== 1) {
+			LocalTime hora= leerHora();
+			permanencia= new PermanenciaPorHora(dia, hora);
+		}
+		return permanencia;
+	}
+	
+	public static int elegirPermanencia() {
+		int ordinalPermanencia;
+		do {
+			System.out.print("\nElige una permanencia(0. Por Tramo, 1. Por Hora): ");
+			ordinalPermanencia= Entrada.entero();
+		} while (ordinalPermanencia< 0 || ordinalPermanencia> 1);
+		return ordinalPermanencia;
+	}
+	
+	public static LocalTime leerHora() {
+		LocalTime hora= null;
+		String formato= "HH:mm";
+		DateTimeFormatter patron= DateTimeFormatter.ofPattern(formato);
+		System.out.printf("Introduce la hora (%s): ", formato);
+		String horaForm= Entrada.cadena();
+		
+		try {
+			hora= LocalTime.parse(horaForm, patron);
+		} catch (DateTimeParseException e) {
+			System.out.print("ERROR: El formato de la hora no es válido. ");
+		}
+		return hora;
+	}
+	
+	
+	public static Reserva leerReserva() {
+		return new Reserva(leerProfesor(), leerAula(), leerPermanencia());
+	}
+	
+	public static Reserva leerReservaFicticia() {
+		return Reserva.getReservaFicticia(leerAulaFicticia(), leerPermanencia());
+	}
 }
