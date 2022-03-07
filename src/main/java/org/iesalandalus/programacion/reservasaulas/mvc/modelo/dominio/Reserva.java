@@ -32,7 +32,7 @@ public class Reserva {
 		if (profesor== null) {
 			throw new NullPointerException("ERROR: La reserva debe estar a nombre de un profesor.");
 		}
-		this.profesor= profesor;
+		this.profesor=  new Profesor(profesor);
 		
 	}
 	public Profesor getProfesor() {
@@ -56,12 +56,28 @@ public class Reserva {
 			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
 			
 		}
+		// Comprobación de clase a través de operador instanceof
+		if (permanencia instanceof PermanenciaPorHora) {
+			this.permanencia= new PermanenciaPorHora((PermanenciaPorHora) permanencia);
+		} else if (permanencia instanceof PermanenciaPortTramo) {
+			this.permanencia= new PermanenciaPorTramo((PermanenciaPorTramo) permanencia);
+		}
 		this.permanencia= permanencia;
 	}
 	public Permanencia getPermanencia() {
 		return permanencia;
 	}
-
+	
+	// Método que obtiene un profesor ficticio y una reserva con un aula y una permanencia obtenida como parámetros
+	public static Reserva getReservaFicticia(Aula aula, Permanencia permanencia) {
+		return new Reserva(Profesor.getProfesorFicticio("ppcf_11@outlook.com"), aula, permanencia);
+	}
+	
+	//Cantidad de puntos entre la suma de Permanencia y aula. 
+	public float getPuntos()
+	{
+		return permanencia.getPuntos()+aula.getPuntos();
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(aula, permanencia);
@@ -81,7 +97,7 @@ public class Reserva {
 
 	@Override
 	public String toString() {
-		return "Profesor=" + getProfesor() + ", aula=" + getAula() + ", permanencia=" + getPermanencia();
+		return "Profesor=" + getProfesor() + ", aula=" + getAula() + ", permanencia=" + getPermanencia() + ", puntos=" + getPuntos();
 	}
 	
 	
