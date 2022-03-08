@@ -5,26 +5,26 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
+import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
-public class Vista{
+public class Vista implements IVista {
 	
 	// incicializaci√≥n de par√°metros de validaci√≥n de entradas
 	private static final String ERROR= "ERROR: ";
 	private static final String NOMBRE_VALIDO= "Nombre v·lido";
 	private static final String CORREO_VALIDO= "Correo v·lido";
-	private Controlador controlador;
+	private IControlador controlador;
 	
 	//Constructor
 	public Vista() {
 		Opcion.setVista(this);
 	}
 	//Consulta a controlador
-	public void setControlador(Controlador controlador) {
+	public void setControlador(IControlador controlador) {
 		this.controlador= controlador;
 	}	
 	
