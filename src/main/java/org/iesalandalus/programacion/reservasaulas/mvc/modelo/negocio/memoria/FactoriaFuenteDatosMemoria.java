@@ -9,17 +9,17 @@ public class FactoriaFuenteDatosMemoria implements IFuenteDatos{
 	
 	@Override
 	public IAulas crearAulas() {
-		return new Aulas();
+		return (IAulas) new Aulas();
 	}
 	
 	@Override
 	public IProfesores crearProfesores() {
-		return new Profesores();
+		return (IProfesores) new Profesores();
 	}
 	
 	@Override
 	public IReservas crearReservas() {
-		return new Reservas();
+		return (IReservas) new Reservas();
 	}
 
 	

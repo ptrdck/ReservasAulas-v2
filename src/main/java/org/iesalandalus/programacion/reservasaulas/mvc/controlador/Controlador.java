@@ -30,8 +30,8 @@ public class Controlador implements IControlador {
 			throw new IllegalArgumentException("ERROR: La vista no puede ser nula.");
 		}
 		
-		this.modelo = modelo;
-		this.vista = vista;
+		this.modelo = (Modelo) modelo;
+		this.vista = (Vista) vista;
 		this.vista.setControlador(this);
 	}
 	//invocación de métodos en vista

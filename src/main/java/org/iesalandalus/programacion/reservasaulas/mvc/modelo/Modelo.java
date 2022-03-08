@@ -21,7 +21,7 @@ public class Modelo implements IModelo {
 	private IReservas reservas;
 	
 	//Constructor
-	public Modelo(IFuenteDatos fuentedatos) {
+	public Modelo(IFuenteDatos fuenteDatos) {
 		profesores= fuenteDatos.crearProfesores();
 		aulas= fuenteDatos.crearAulas();
 		reservas= fuenteDatos.crearReservas();
