@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
-/*
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -8,10 +8,10 @@ import static org.junit.Assert.fail;
 import java.time.LocalDate;
 
 import org.junit.Test;
-*/
+
 
 public class PermanenciaPorTramoTest {
-/*	
+	
 	private static final String ERROR_DIA_NULO = "ERROR: El día de una permanencia no puede ser nulo.";
 	private static final String ERROR_TRAMO_NULO = "ERROR: El tramo de una permanencia no puede ser nulo.";
 	private static final String ERROR_COPIAR_PERMANENCIA_NULA = "ERROR: No se puede copiar una permanencia nula.";
@@ -101,7 +101,6 @@ public class PermanenciaPorTramoTest {
 	@Test
 	public void toStringDevuelveLaCadenaEsperada() {
 		PermanenciaPorTramo permanencia = new PermanenciaPorTramo(DIA1, TRAMO1);
-		assertThat(CADENA_NO_ESPERADA, permanencia.toString(), is(String.format("día=%s, tramo=%s", DIA1.format(Permanencia.FORMATO_DIA), TRAMO1)));
+		assertThat(CADENA_NO_ESPERADA, permanencia.toString(), is(String.format("d�a=%s, tramo=%s", DIA1.format(Permanencia.FORMATO_DIA), TRAMO1)));
 	}
-*/
 }

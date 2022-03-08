@@ -12,8 +12,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
-public class Reservas {
+public class Reservas implements IReservas{
 	
 	//inicializacion coleccionReservas (0.....*)
 	private List<Reserva> coleccionReservas;
@@ -24,18 +25,15 @@ public class Reservas {
 	}
 	
 	//Constructor copia
-	public Reservas(Reservas reservas) {
-		if(reservas== null) {
-			throw new NullPointerException("ERROR: No se pueden copiar reservas nulas.");
-		}
+	public Reservas(IReservas reservas) {
 		setReservas(reservas);
 	}
 	//Método setreservas. Convierte un objeto de reservas en un arraylist asignando a coleccion
-	private void setReservas(Reservas reservas) {
+	private void setReservas(IReservas reservas) {
 		if(reservas== null) {
 			throw new NullPointerException("ERROR: No se puede copiar una reserva nula.");
 		}
-		coleccionReservas= copiaProfundaReservas(reservas.coleccionReservas);	
+		coleccionReservas= copiaProfundaReservas(reservas.getReservas());	
 	}
 	//Método para crear una copia profunda del arraylist. 
 	//solucion a Aliasing
@@ -190,7 +188,7 @@ public class Reservas {
 		return reservaListaProf;
 	}
 	//método que crea listas de reservas con el parámetro aula
-		public List<Reserva> getReservasAulas(Aula aula) {
+		public List<Reserva> getReservasAula(Aula aula) {
 			if (aula == null) {
 				throw new NullPointerException("ERROR: No se puede anula una reserva nula.");
 			}

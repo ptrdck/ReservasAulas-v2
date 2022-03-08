@@ -7,8 +7,9 @@ import java.util.List;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 
-public class Profesores {
+public class Profesores implements IProfesores{
 	
 	//Inicialización de Lista (0..*)
 	private List<Profesor> coleccionProfesores;
@@ -18,18 +19,15 @@ public class Profesores {
 		coleccionProfesores= new ArrayList<>();
 	}
 	//Constructor copia
-	public Profesores(Profesores profesores) {
-		if (profesores== null) {
-			throw new NullPointerException("ERROR: No se pueden copiar profesores nulos.");
-		}
+	public Profesores(IProfesores profesores) {
 		setProfesores(profesores);
 	}
-	private void setProfesores(Profesores profesores) {
+	private void setProfesores(IProfesores profesores) {
 		if (profesores== null) {
 			throw new NullPointerException("ERROR: No se puede copiar un profesor nulo.");
 		}
 		//Asignación que evita Aliasing
-		coleccionProfesores=copiaProfundaProfesores(profesores.coleccionProfesores);
+		this.coleccionProfesores=copiaProfundaProfesores(profesores.getProfesores());
 		
 	}
 	//método para construir copia profunda del ArrayList. 

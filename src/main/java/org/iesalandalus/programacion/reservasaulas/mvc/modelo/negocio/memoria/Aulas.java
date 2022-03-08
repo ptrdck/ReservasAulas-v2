@@ -7,8 +7,9 @@ import java.util.List;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
 
-public class Aulas {
+public class Aulas implements IAulas {
 
 	//Inicialización de arrayList (0...*)
 	private List<Aula> coleccionAulas;
@@ -17,20 +18,18 @@ public class Aulas {
 		coleccionAulas= new ArrayList<>();
 	}
 	
-	//Constructor copia
-	public Aulas(Aulas aulas) {
-		if (aulas== null) {
-			throw new NullPointerException("ERROR: No se puede copiar aulas nulas.");
-		}
+	public Aulas(IAulas aulas) {
 		setAulas(aulas);
 	}
+	//Constructor copia
+
 	//creción de Setter para Aulas
-	private void setAulas(Aulas aulas) {
+	private void setAulas(IAulas aulas) {
 		if (aulas== null) {
 			throw new NullPointerException("ERROR:No se puede copiar aulas nulas.");
 		}
 		//copia de array para evitar Aliasing
-		coleccionAulas= copiaProfundaAulas(aulas.coleccionAulas);
+		this.coleccionAulas= copiaProfundaAulas(aulas.getAulas());
 	}
 	
 	//Crecion getter para lista Aulas, retorna una copia para coleccion

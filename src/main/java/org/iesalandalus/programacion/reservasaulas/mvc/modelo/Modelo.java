@@ -9,7 +9,6 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanenci
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IFuenteDatos;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
