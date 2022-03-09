@@ -79,7 +79,7 @@ public enum Opcion {
 	};
 	
 	private String mensajeAMostrar;
-	private static Vista vista;
+	private static IVista vista;
 	
 	private Opcion(String mensaje) {
 		this.mensajeAMostrar= mensaje;
@@ -90,10 +90,7 @@ public enum Opcion {
 	
 	public abstract void ejecutar();
 	
-	protected static void setVista(Vista vista) {
-		if (vista == null) {
-			throw new NullPointerException("ERROR: La vista no pueda ser nula.");
-		}
+	protected static void setVista(IVista vista) {
 		Opcion.vista = vista;
 	}
 	

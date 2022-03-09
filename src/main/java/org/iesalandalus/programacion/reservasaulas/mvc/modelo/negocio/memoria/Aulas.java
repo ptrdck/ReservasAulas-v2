@@ -33,6 +33,7 @@ public class Aulas implements IAulas {
 	}
 	
 	//Crecion getter para lista Aulas, retorna una copia para coleccion
+	@Override
 	public List<Aula> getAulas() {
 		return copiaProfundaAulas(coleccionAulas);
 	}
@@ -49,12 +50,14 @@ public class Aulas implements IAulas {
 	}
 	
 	//Método que nos retorna el tamaño de la colección
+	@Override
 	public int getNumAulas() {
 		return coleccionAulas.size();
 	}
 	
 	//método insertar aula. Comprobación de nulos. Recorre la colección cuando no es nulo en búsqueda de alguna coincidencia. 
 	//Retorna  una excepción si encuentra el aula ya creada. ASigna una copia de aula 
+	@Override
 	public void insertar (Aula aula) throws OperationNotSupportedException {
 		if (aula== null) {
 			throw new NullPointerException("ERROR: No se puede insertar un aula nula.");
@@ -67,7 +70,8 @@ public class Aulas implements IAulas {
 		
 		}
 	}
-	//método que busca el indice de un aula creada como parámetro en el método anterior. 
+	//método que busca el indice de un aula creada como parámetro en el método anterior.
+	@Override
 	public Aula buscar(Aula aula) {
 		if (aula== null) {
 			throw new NullPointerException("ERROR: No se puede buscar un aula nula.");
@@ -81,7 +85,7 @@ public class Aulas implements IAulas {
 	}
 	//Metodo borrar:
 	//Localizar posición de aula en el array y desplazamos posición para borrar
-	
+	@Override
 	public void borrar(Aula aula) throws OperationNotSupportedException{
 		if (aula== null) {
 			throw new NullPointerException("ERROR: No se puede borrar un aula nula.");
@@ -96,6 +100,7 @@ public class Aulas implements IAulas {
 	
 	//metodo para Representar. Crea ArrayList de tipo String donde se guardarán los datos
 	//que saldrán de .toString de Aulas
+	@Override
 	public List<String> representar() {
 		//incialización
 		List<String> representacion=new ArrayList<>();

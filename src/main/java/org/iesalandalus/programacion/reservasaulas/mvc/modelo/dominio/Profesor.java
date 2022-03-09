@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Profesor {
 	
 	private static final String ER_TELEFONO= "(9|6)[0-9]{8}";
-	private static final String ER_CORREO= ".+@[a-zA-Z]+\\.[a-zA-z]+";
+	private static final String ER_CORREO= "\\w+(?:\\.\\w+)*@\\w+\\.\\w{2,5}";
 	
 	private String nombre;
 	private String correo;
@@ -68,7 +68,7 @@ public class Profesor {
 	}
 	//validación teléfono
 	public void setTelefono(String telefono) {
-		if (telefono== null || !telefono.matches(ER_TELEFONO)) {
+		if (telefono != null && !telefono.matches(ER_TELEFONO)){
 			throw new IllegalArgumentException("ERROR: El teléfono del profesor no es válido.");
 		}
 		this.telefono = telefono;
@@ -94,7 +94,7 @@ public class Profesor {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombre);
+		return Objects.hash(correo);
 	}
 
 	@Override
@@ -106,13 +106,13 @@ public class Profesor {
 		if (getClass() != obj.getClass())
 			return false;
 		Profesor other = (Profesor) obj;
-		return Objects.equals(nombre, other.nombre);
+		return Objects.equals(correo, other.correo);
 	}
 
 	@Override
 	public String toString() {
 		//condición de que pueda salir o no el teléfono. 
-		String cadenaTelefono=(getTelefono()== null)? "": ", telefono=" +getTelefono();
+		String cadenaTelefono=(telefono== null)? "": ", telefono=" + telefono;
 		return "nombre=" + getNombre() + ", correo=" + getCorreo() + cadenaTelefono ;
 	}
 	

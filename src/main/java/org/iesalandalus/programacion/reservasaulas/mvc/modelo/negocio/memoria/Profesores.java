@@ -24,10 +24,10 @@ public class Profesores implements IProfesores{
 	}
 	private void setProfesores(IProfesores profesores) {
 		if (profesores== null) {
-			throw new NullPointerException("ERROR: No se puede copiar un profesor nulo.");
+			throw new NullPointerException("ERROR: No se pueden copiar profesores nulos.");
 		}
 		//Asignación que evita Aliasing
-		this.coleccionProfesores=copiaProfundaProfesores(profesores.getProfesores());
+		coleccionProfesores= copiaProfundaProfesores(profesores.getProfesores());
 		
 	}
 	//método para construir copia profunda del ArrayList. 
@@ -43,10 +43,12 @@ public class Profesores implements IProfesores{
 		
 		return copiaProfesores;	
 	}
+	@Override
 	public List<Profesor> getProfesores(){
 		return copiaProfundaProfesores(coleccionProfesores);
 	}
 	//método que retorna el tamaño del arrayList coleccionProfesores
+	@Override
 	public int getNumProfesores() {
 		return coleccionProfesores.size();
 	}
@@ -54,11 +56,12 @@ public class Profesores implements IProfesores{
 	
 	//método insertar profesor. Si profesor no es nulo, el método recorre coleccionProfesores hasta buscar 
 	//una coincidencia. 
+	@Override
 	public void insertar(Profesor profesor) throws OperationNotSupportedException {
 		
 		if (profesor== null) {
 			throw new NullPointerException("ERROR: No se puede insertar un profesor nulo.");
-		}else if(buscar(profesor)== null) {
+		}else if(!coleccionProfesores.contains(profesor)) {
 			coleccionProfesores.add(new Profesor(profesor));
 		}else {
 			throw new OperationNotSupportedException("ERROR: Ya existe un profesor con ese nombre.");
@@ -66,6 +69,7 @@ public class Profesores implements IProfesores{
 	}
 	
 	//Método buscar. Busca profesor como parámetro a través de indice indexOF. 
+	@Override
 	public Profesor buscar(Profesor profesor) {
 		if (profesor== null) {
 			throw new NullPointerException("ERROR: No se puede buscar un profesor nulo.");
@@ -79,6 +83,7 @@ public class Profesores implements IProfesores{
 	}
 	
 	//método para borrar profesor a través de verificar que existe y luego lo eliminamos con remove
+	@Override
 	public void borrar(Profesor profesor) throws OperationNotSupportedException {
 		if (profesor== null) {
 			throw new NullPointerException("ERROR: No se puede borrar un profesor nulo.");
@@ -92,6 +97,7 @@ public class Profesores implements IProfesores{
 	
 	//Método representar para crear un ArrayList adecuado para guardar toString de profesores
 	//ArrayList tipo String
+	@Override
 	public List<String> representar() {
 		
 		List<String> representacion= new ArrayList<>();

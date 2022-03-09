@@ -24,11 +24,13 @@ public class Vista implements IVista {
 		Opcion.setVista(this);
 	}
 	//Consulta a controlador
+	@Override
 	public void setControlador(IControlador controlador) {
 		this.controlador= controlador;
 	}	
 	
 	//Invoca la opcion comenzar de Opcion
+	@Override
 	public void comenzar()
 	{
 		int ordinalOpcion;
@@ -41,10 +43,12 @@ public class Vista implements IVista {
 		} while (ordinalOpcion != Opcion.SALIR.ordinal());
 	}
 	//método para salir de Opcion
+	@Override
 	public void salir() {
 		controlador.terminar();
 	}
 	//Invoca método insertar de Aula
+	@Override
 	public void insertarAula() {
 		Consola.mostrarCabecera("Insertar aula");
 		
@@ -60,6 +64,7 @@ public class Vista implements IVista {
 	
 	}
 	//opcion que invoca al méotodo borrar de Aula
+	@Override
 	public void borrarAula() {
 		Consola.mostrarCabecera("Borrar aula");
 		try {
@@ -72,6 +77,7 @@ public class Vista implements IVista {
 		}
 	}
 	//invoca opción buscar de aulas
+	@Override
 	public void buscarAula() {
 		Consola.mostrarCabecera("Buscar aula");
 		Aula aula;
@@ -87,6 +93,7 @@ public class Vista implements IVista {
 		}
 	}
 	//Opcion que invoca método de mostrar lista de aulas en Aulas
+	@Override
 	public void listarAulas() {
 		Consola.mostrarCabecera("Lista de aulas");
 		List<String> aulas= controlador.representarAulas();
@@ -102,6 +109,7 @@ public class Vista implements IVista {
 			
 	}
 	//opción que invoca la inserción de profesores
+	@Override
 	public void insertarProfesor() {
 		Consola.mostrarCabecera("Insertar profesor");
 		try {
@@ -114,6 +122,7 @@ public class Vista implements IVista {
 		}
 	}
 	//opción que invoca método boorar de profesores
+	@Override
 	public void borrarProfesor() {
 		Consola.mostrarCabecera("Borrar profesor");
 		try {
@@ -127,6 +136,7 @@ public class Vista implements IVista {
 	}
 	
 	//opción que invoca método buscar profesor en profesores
+	@Override
 	public void buscarProfesor() {
 		Consola.mostrarCabecera("Buscar profesor");
 		Profesor profesor;
@@ -142,6 +152,7 @@ public class Vista implements IVista {
 	}
 	
 	//opción que invoca método de ver listas de profesores en Profesores
+	@Override
 	public void listarProfesores() {
 		Consola.mostrarCabecera("Lista de profesores");
 		
@@ -157,6 +168,7 @@ public class Vista implements IVista {
 	}
 	
 	//opción que invoca método de insertar reserva
+	@Override
 	public void realizarReserva() {
 		Consola.mostrarCabecera("Realizar reserva");
 		try {
@@ -176,7 +188,7 @@ public class Vista implements IVista {
 					System.out.println(ERROR + "El aula" + aula.getNombre() + " no est� registrada.");
 				}
 			} else {
-				System.out.println(ERROR + "El correo" + profesor.getCorreo() + " no est� registrado.");
+				System.out.println(ERROR + "El correo " + profesor.getCorreo() + " no est� registrado.");
 			}
 			//Captura de excepciones
 		} catch (NullPointerException | IllegalArgumentException | OperationNotSupportedException e) {
@@ -275,6 +287,7 @@ public class Vista implements IVista {
 	}		
 	*/
 	//opción para borrar reserva
+	@Override
 	public void anularReserva() {
 		Consola.mostrarCabecera("Anular Reserva");
 		
@@ -288,6 +301,7 @@ public class Vista implements IVista {
 	}	
 	
 	//listar reservas a través del método listar en Reservas
+	@Override
 	public void listarReservas() {
 		Consola.mostrarCabecera("Listas de Reservas");
 			
@@ -302,6 +316,7 @@ public class Vista implements IVista {
 		}
 	}
 	//método para listar reservas con el parámetro aulas invocado en Reservas
+	@Override
 	public void listarReservasAula() {
 		Consola.mostrarCabecera("Lista de reservas por aula");
 		List<Reserva> reservas= controlador.getReservasAula(Consola.leerAula());
@@ -316,6 +331,7 @@ public class Vista implements IVista {
 		}
 	}
 	//invocar método listar reservas por profesor en Reservas
+	@Override
 	public void listarReservasProfesor() {
 		Consola.mostrarCabecera("Lista de reservas por profesor");
 		List<Reserva> reservas= controlador.getReservasProfesor(Consola.leerProfesor());
@@ -331,6 +347,7 @@ public class Vista implements IVista {
 	}
 	
 	//invocación de método consultar disponibilidad en Reservas
+	@Override
 	public void consultarDisponibilidad() {
 		
 		try {
